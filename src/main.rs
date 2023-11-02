@@ -284,7 +284,7 @@ fn main() -> anyhow::Result<()> {
     let start = std::time::Instant::now();
 
     //let device = candle_core::Device::cuda_if_available(0)?;
-    let device = Device::new_cuda(0)?;
+    let device = Device::new_cuda(1)?;
     println!("Device: {:?}", device);
 
     let mut model = match model_path.extension().and_then(|v| v.to_str()) {

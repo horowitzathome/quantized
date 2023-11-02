@@ -80,3 +80,100 @@ cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
 <|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
 
 <|user|>: Summarize all I told you about Georg"
+
+
+
+
+
+
+
+
+
+
+
+
+cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Georg"
+    Finished release [optimized] target(s) in 0.10s
+     Running `target/release/quantized --which 7b-zephyr --sample-len 300 --prompt '
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Georg'`
+avx: false, neon: false, simd128: false, f16c: false
+temp: 0.80 repeat-penalty: 1.10 repeat-last-n: 64
+Device: Cuda(CudaDevice(DeviceId(1)))
+loaded 291 tensors (4.37GB) in 0.51s
+model built
+
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Error: device mismatch in index-select, lhs: Cpu, rhs: Cuda { gpu_id: 0 }
+<|user|>: Summarize all I told you about Georggeorg_nozicka@instance-1:~/quantized
+
+
+
+
+
+ 1  lspci | grep -i nvidia
+    2  uname -m && cat /etc/*release
+    3  sudo apt install git gcc libssl-dev pkg-config
+    4  gcc --version
+    5  uname -r
+    6  wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+    7  ls
+    8  sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    9  ls
+   10  sudo add-apt-repository contrib
+   11  sudo apt-get update
+   12  sudo apt-get install software-properties-common
+   13  sudo add-apt-repository contrib
+   14  sudo apt-get update
+   15  sudo apt-get -y install cuda-toolkit-12-3
+   16  sudo apt-get install -y nvidia-kernel-open-dkms
+   17  sudo apt-get install -y cuda-drivers
+   18  sudo apt-get install linux-headers-$(uname -r)
+   19  sudo add-apt-repository contrib
+   20  sudo apt-key del 7fa2af80
+   21  uname -r
+   22  uname -m && cat /etc/*release
+   23  uname -r
+   24  lsb_release -a
+   25  sudo dpkg -i cuda-repo-bullseye-11-0-local_x86_64.deb
+   26  lsb_release -c
+   27  apt-cache search cuda
+   28  sudo dpkg -i cuda-repo-bullseye-11-7-local_x86_64.deb
+   29  wget https://developer.download.nvidia.com/compute/cuda/repos/debian/x86_64/cuda-keyring_1.1-1_all.deb
+   30  wget https://developer.download.nvidia.com/compute/cuda/repos/bullseye/x86_64/cuda-keyring_1.1-1_all.deb
+   31  wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+   32  sudo dpkg -i cuda-keyring_1.1-1_all.deb
+   33  sudo apt-get update
+   34  sudo apt-get -y install cuda
+   35  history
+   36  sudo reboot
+   37  sudo apt update
+   38  git
+   39  curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+   40  source "$HOME/.cargo/env"
+   41  git clone https://github.com/horowitzathome/quantized.git
+   42  cd quantized/
+   43  cargo build --release
+   44  nvidia-smi --query-gpu=compute_cap --format=csv 
+   45  nvcc --version
+   46  export
+   47  export | grep CUDA
+   48  export | grep cuda
+   49  nvidia-smi --query-gpu=compute_cap --format=csv 
+   50  ls /usr/local/cuda-12.3/
+   51  export PATH=/usr/local/cuda-12.3/bin${PATH:+:${PATH}}
+   52  echo $PATH
+   53  cargo build --release
+   54  git pull
+   55  cargo build --release
+   56  git pull
+   57  cargo build --release
+   58  cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
