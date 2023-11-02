@@ -283,6 +283,9 @@ fn main() -> anyhow::Result<()> {
     let mut file = std::fs::File::open(&model_path)?;
     let start = std::time::Instant::now();
 
+    let device = candle_core::Device::cuda_if_available(0)?;
+    println("Device: {}", device);
+
     let mut model = match model_path.extension().and_then(|v| v.to_str()) {
         Some("gguf") => {
             let model = gguf_file::Content::read(&mut file)?;
@@ -393,7 +396,7 @@ fn main() -> anyhow::Result<()> {
 
         let start_prompt_processing = std::time::Instant::now();
         let mut next_token = {
-            let input = Tensor::new(prompt_tokens.as_slice(), &Device::Cpu)?.unsqueeze(0)?;
+            let input = Tensor::new(prompt_tokens.as_slice(), &device)?.unsqueeze(0)?;
             let logits = model.forward(&input, 0)?;
             let logits = logits.squeeze(0)?;
             logits_processor.sample(&logits)?
@@ -406,7 +409,7 @@ fn main() -> anyhow::Result<()> {
 
         let start_post_prompt = std::time::Instant::now();
         for index in 0..to_sample {
-            let input = Tensor::new(&[next_token], &Device::Cpu)?.unsqueeze(0)?;
+            let input = Tensor::new(&[next_token], &device)?.unsqueeze(0)?;
             let logits = model.forward(&input, prompt_tokens.len() + index)?;
             let logits = logits.squeeze(0)?;
             let logits = if args.repeat_penalty == 1. {

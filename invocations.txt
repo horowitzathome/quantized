@@ -31,6 +31,15 @@ cargo run  --release --features accelerate -- --which 7b-mistral-instruct --samp
 
 <|user|>: Summarize all I told you about Georg"
 
+
+
+
+cargo run  --release -- --which 7b-mistral-instruct --sample-len 300 --prompt "
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Georg"
+
 ==========================================================================================================================================================================
 
 cargo run  --release --features accelerate -- --which 7b-mistral-instruct --sample-len 300 --prompt "

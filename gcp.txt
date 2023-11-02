@@ -1,3 +1,82 @@
 VM e2-micro
 Very slow compiling Rust.
 
+Commands:
+
+sudo apt update
+sudo apt install git gcc libssl-dev pkg-config
+
+gcc --version
+
+# CUDA
+# https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#debian
+# https://www.youtube.com/watch?v=5vFPlv6M9Cs
+
+lspci | grep -i nvidia
+    2  uname -m && cat /etc/*release
+    3  sudo apt install git gcc libssl-dev pkg-config
+    4  gcc --version
+    5  uname -r
+    6  wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+    7  ls
+    8  sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    9  ls
+   10  sudo add-apt-repository contrib
+   11  sudo apt-get update
+   12  sudo apt-get install software-properties-common
+   13  sudo add-apt-repository contrib
+   14  sudo apt-get update
+   15  sudo apt-get -y install cuda-toolkit-12-3
+   16  sudo apt-get install -y nvidia-kernel-open-dkms
+   17  sudo apt-get install -y cuda-drivers
+   18  sudo apt-get install linux-headers-$(uname -r)
+   19  sudo add-apt-repository contrib
+   20  sudo apt-key del 7fa2af80
+   21  uname -r
+   22  uname -m && cat /etc/*release
+   23  uname -r
+   24  lsb_release -a
+   25  sudo dpkg -i cuda-repo-bullseye-11-0-local_x86_64.deb
+   26  lsb_release -c
+   27  apt-cache search cuda
+   28  sudo dpkg -i cuda-repo-bullseye-11-7-local_x86_64.deb
+   29  wget https://developer.download.nvidia.com/compute/cuda/repos/debian/x86_64/cuda-keyring_1.1-1_all.deb
+   30  wget https://developer.download.nvidia.com/compute/cuda/repos/bullseye/x86_64/cuda-keyring_1.1-1_all.deb
+   31  wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+   32  sudo dpkg -i cuda-keyring_1.1-1_all.deb
+   33  sudo apt-get update
+   34  sudo apt-get -y install cuda
+   35  history
+
+
+
+
+
+
+
+# Show compute cap
+nvidia-smi --query-gpu=compute_cap --format=csv 
+
+# Show cuda compiler driver version
+nvcc --version
+
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+source "$HOME/.cargo/env"
+
+cargo new hello
+cd hello
+cargo run
+
+cd
+
+git clone https://github.com/horowitzathome/quantized.git
+cd quantized
+
+cargo build --release
+
+
+cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Georg"
