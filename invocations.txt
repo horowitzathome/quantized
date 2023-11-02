@@ -1,0 +1,418 @@
+
+Good result:
+
+cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
+
+Context:
+Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Task:
+Summarize the context"
+
+
+Output
+
+Context:
+Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Task:
+Summarize the context given in the text material about Georg, his origin and significant details.
+
+Summary:
+Georg is a 60-year-old Austrian who studied software engineering in Vienna. He has a dog named Millie who was born in Zakynthos, Greece.</s>
+
+
+==========================================================================================================================================================================
+
+
+cargo run  --release --features accelerate -- --which 7b-mistral-instruct --sample-len 300 --prompt "
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Georg"
+
+==========================================================================================================================================================================
+
+cargo run  --release --features accelerate -- --which 7b-mistral-instruct --sample-len 300 --prompt "
+
+<|system|>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user|>: Summarize all I told you about Millie."
+
+==========================================================================================================================================================================
+
+cargo run  --release --features accelerate -- --which 7b-mistral-instruct --sample-len 300 --temperature 1.0 --prompt "
+<|system|>: I give you facts and you should tell me which are right and which are wrong. 
+
+The facts I give you look as follows:
+1: Fact1
+2: Fact2
+3: Fact3
+
+Your answers should then look for example as follows: 
+1: true
+2: true
+3: false
+
+<|user|>: Tell me, which of the following facts are right and which are wrong:
+1: The earth is round. 
+2: The sun rotates around the earth 
+3: The earth rotates around the sun"
+
+===> Answer
+
+avx: false, neon: true, simd128: false, f16c: false
+temp: 1.00 repeat-penalty: 1.10 repeat-last-n: 64
+loaded 291 tensors (5.13GB) in 0.11s
+model built
+
+<|system|>: I give you facts and you should tell me which are right and which are wrong.
+
+The facts I give you look as follows:
+1: Fact1
+2: Fact2
+3: Fact3
+
+Your answers should then look for example as follows:
+1: true
+2: true
+3: false
+
+<|user|>: Tell me, which of the following facts are right and which are wrong:
+1: The earth is round.
+2: The sun rotates around the earth
+3: The earth rotates around the sun
+2.1: The moon is bigger than the sun.
+3.2: The dragon is the largest animal ever lived on earth.
+Please specify only the number of each fact that you think is true and the number of each fact that you think is wrong.
+(You can use the rules specified earlier)</s>
+
+==========================================================================================================================================================================
+
+
+cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
+
+This is an interview between a journalist (marked as 'Standard:') and another person marked as 'Tomuschat:'. Summarize theis interview to make it short and comprehensive.
+
+Für Israels Militär sei es äußerst schwierig, einen Krieg gegen die radikalislamische Hamas nach den Normen des Völkerrechts zu führen, sagt Christian Tomuschat, einer der profiliertesten Völkerrechtler Deutschlands, im STANDARD-Gespräch. Wenn Israel die Hamas tatsächlich vollständig eliminieren will, müsse es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Die Terrororganisation Hamas hat den aktuellen Nahost-Krieg durch ihren barbarischen Angriff auf Israel mit 1.400 Todesopfern entfesselt. Welche Möglichkeiten besaß Israel unmittelbar nach dem Hamas-Überfall, um im Rahmen des Selbstverteidigungsrechts zu reagieren?
+
+Tomuschat: Israel hatte nicht nur das Recht nach Artikel 51 der UN-Charta auf Selbstverteidigung gegen die Terrororganisation Hamas. Israel hat als Staat auch die Pflicht, seine Bevölkerung vor Terrorangriffen mit geeigneten Maßnahmen zu schützen. Zu diesen Maßnahmen gehört auch die Anwendung von Waffengewalt. Kein Staat darf sich derartig abscheuliche Terrorangriffe auf seine Menschen gefallen lassen.
+
+STANDARD: Macht es einen völkerrechtlichen Unterschied, dass Israel gegen eine Terrorgruppe kämpft und nicht gegen einen souveränen Staat?
+
+Tomuschat: Nein. Israel führt einen eindeutigen Selbstverteidigungskrieg gegen diese Terrororganisation. Die Hamas hat darüber hinaus als Beherrscher des Gazastreifens eine regierungsähnliche Form.
+
+STANDARD: Israels Militär versichert, dass es bei den Angriffen auf die Hamas im Einklang mit dem Völkerrecht handelt und die Vorgaben beachtet. Was sagen Sie?
+
+Tomuschat: Auch in dieser bewaffneten Auseinandersetzung gelten die Genfer Konventionen und ihre Zusatzprotokolle sowie die Haager Landkriegsordnung. Israel und die Hamas haben danach kein unbeschränktes Recht in der Wahl der Methoden und der Mittel ihrer Kriegführung. Zentral ist, dass die Zivilbevölkerung, einzelne Zivilpersonen und zivile Einrichtungen wie Krankenhäuser allgemeinen Schutz genießen, also nicht angegriffen werden dürfen.
+
+STANDARD: Israel bombardiert seit Wochen massiv den Gazastreifen und intensiviert nun seine Bodenoffensive. Tausende Zivilisten sind bei den Luftangriffen laut den UN bereits gestorben. Geht Israel damit zu weit?
+
+Tomuschat: Israel geht mit dem Bombardement sicherlich an Grenzen. Auch bei so einer Offensive, wie Israel sie derzeit gegen die Hamas führt, müssen die elementaren Regeln des Kriegsvölkerrechts eingehalten werden. Es gelten etwa die Prinzipien der Humanität und der Verhältnismäßigkeit. Israel steht unter der Kontrolle der Weltöffentlichkeit.
+
+STANDARD: Der Gazastreifen ist klein und mit 2,3 Millionen Menschen sehr dicht bevölkert. Hamas-Extremisten verstecken sich in Wohnhäusern und anderen zivilen Gebäuden. Die Terrorgruppe missbraucht Zivilisten als Schutzschilde und schert sich nicht um ihr Leid. Wie ist für Israel unter diesen Umständen eine bewaffnete Auseinandersetzung nach den Regeln des Kriegsvölkerrechts überhaupt möglich?
+
+Tomuschat: Für Israels Militär ist es äußerst schwierig, einen Krieg gegen diesen Gegner und unter diesen Umständen nach den Normen des Völkerrechts zu führen. Der Krieg kann noch in einen Häuserkampf, einen 'urban warfare', münden, dann dürfte es noch schlimmer werden. Eigentlich müssten die bewaffneten Kräfte in gehöriger Distanz zu der Bevölkerung stehen und operieren. Alle Anstrengungen der kriegsführenden Parteien müssten darauf ausgerichtet sein, Kombattanten und Zivilisten weiträumig zu trennen. Das lässt sich aber in der gegenwärtigen Situation kaum verwirklichen. Wir haben es nicht mit zwei Staaten zu tun, deren Armeen weitab der Wohnregionen gegeneinander antreten.
+
+STANDARD: Welche Folge hat das für Israels Militär?
+
+Tomuschat: Israels Militär sieht sich mit einem echten Dilemma konfrontiert: Wenn Israel die Hamas, die den schlimmsten Massenmord an Juden seit dem Holocaust verübt hat, vollständig eliminieren will, muss es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Dürfen Israels Streitkräfte den Gazastreifen abriegeln und Hilfslieferungen über seine Grenzübergänge unterbinden?
+
+Tomuschat: Nach den Regeln des Völkerrechts dürfen die Kriegsparteien die Zivilbevölkerung nicht aushungern. Die Kriegsparteien dürfen keine Vorratslieferungen für Zivilisten abschneiden, um militärische Vorteile zu erzielen.
+
+STANDARD: Eine UN-Kommission hat schon kurz nach dem Beginn der Feindseligkeiten von starken Anhaltspunkten für Kriegsverbrechen gesprochen. Werden diese Taten jemals geahndet?
+
+Tomuschat: Ich gehe davon aus, dass Untersuchungen stattfinden werden. Die UN oder andere Institutionen, möglicherweise der Internationale Strafgerichtshof, können diese Ermittlungen durchführen. Ziel muss es sein, für mögliche Strafverfahren verlässliche Beweise zu sichern.
+
+STANDARD: Zum Abschluss eine grundsätzliche Frage: Was ist das Völkerrecht wert, wenn es nicht durchgesetzt wird?
+
+Tomuschat: In diesem Fall muss man leider schon große Zweifel an der Wirksamkeit des Völkerrechts haben."
+
+==========================================================================================================================================================================
+
+
+cargo run  --release -- --which 7b-zephyr --sample-len 300 --prompt "
+
+Context: This is an interview between a journalist (marked as 'STANDARD:') and another person marked as 'Tomuschat:'. 
+
+Für Israels Militär sei es äußerst schwierig, einen Krieg gegen die radikalislamische Hamas nach den Normen des Völkerrechts zu führen, sagt Christian Tomuschat, einer der profiliertesten Völkerrechtler Deutschlands, im STANDARD-Gespräch. Wenn Israel die Hamas tatsächlich vollständig eliminieren will, müsse es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Die Terrororganisation Hamas hat den aktuellen Nahost-Krieg durch ihren barbarischen Angriff auf Israel mit 1.400 Todesopfern entfesselt. Welche Möglichkeiten besaß Israel unmittelbar nach dem Hamas-Überfall, um im Rahmen des Selbstverteidigungsrechts zu reagieren?
+
+Tomuschat: Israel hatte nicht nur das Recht nach Artikel 51 der UN-Charta auf Selbstverteidigung gegen die Terrororganisation Hamas. Israel hat als Staat auch die Pflicht, seine Bevölkerung vor Terrorangriffen mit geeigneten Maßnahmen zu schützen. Zu diesen Maßnahmen gehört auch die Anwendung von Waffengewalt. Kein Staat darf sich derartig abscheuliche Terrorangriffe auf seine Menschen gefallen lassen.
+
+STANDARD: Macht es einen völkerrechtlichen Unterschied, dass Israel gegen eine Terrorgruppe kämpft und nicht gegen einen souveränen Staat?
+
+Tomuschat: Nein. Israel führt einen eindeutigen Selbstverteidigungskrieg gegen diese Terrororganisation. Die Hamas hat darüber hinaus als Beherrscher des Gazastreifens eine regierungsähnliche Form.
+
+STANDARD: Israels Militär versichert, dass es bei den Angriffen auf die Hamas im Einklang mit dem Völkerrecht handelt und die Vorgaben beachtet. Was sagen Sie?
+
+Tomuschat: Auch in dieser bewaffneten Auseinandersetzung gelten die Genfer Konventionen und ihre Zusatzprotokolle sowie die Haager Landkriegsordnung. Israel und die Hamas haben danach kein unbeschränktes Recht in der Wahl der Methoden und der Mittel ihrer Kriegführung. Zentral ist, dass die Zivilbevölkerung, einzelne Zivilpersonen und zivile Einrichtungen wie Krankenhäuser allgemeinen Schutz genießen, also nicht angegriffen werden dürfen.
+
+STANDARD: Israel bombardiert seit Wochen massiv den Gazastreifen und intensiviert nun seine Bodenoffensive. Tausende Zivilisten sind bei den Luftangriffen laut den UN bereits gestorben. Geht Israel damit zu weit?
+
+Tomuschat: Israel geht mit dem Bombardement sicherlich an Grenzen. Auch bei so einer Offensive, wie Israel sie derzeit gegen die Hamas führt, müssen die elementaren Regeln des Kriegsvölkerrechts eingehalten werden. Es gelten etwa die Prinzipien der Humanität und der Verhältnismäßigkeit. Israel steht unter der Kontrolle der Weltöffentlichkeit.
+
+STANDARD: Der Gazastreifen ist klein und mit 2,3 Millionen Menschen sehr dicht bevölkert. Hamas-Extremisten verstecken sich in Wohnhäusern und anderen zivilen Gebäuden. Die Terrorgruppe missbraucht Zivilisten als Schutzschilde und schert sich nicht um ihr Leid. Wie ist für Israel unter diesen Umständen eine bewaffnete Auseinandersetzung nach den Regeln des Kriegsvölkerrechts überhaupt möglich?
+
+Tomuschat: Für Israels Militär ist es äußerst schwierig, einen Krieg gegen diesen Gegner und unter diesen Umständen nach den Normen des Völkerrechts zu führen. Der Krieg kann noch in einen Häuserkampf, einen 'urban warfare', münden, dann dürfte es noch schlimmer werden. Eigentlich müssten die bewaffneten Kräfte in gehöriger Distanz zu der Bevölkerung stehen und operieren. Alle Anstrengungen der kriegsführenden Parteien müssten darauf ausgerichtet sein, Kombattanten und Zivilisten weiträumig zu trennen. Das lässt sich aber in der gegenwärtigen Situation kaum verwirklichen. Wir haben es nicht mit zwei Staaten zu tun, deren Armeen weitab der Wohnregionen gegeneinander antreten.
+
+STANDARD: Welche Folge hat das für Israels Militär?
+
+Tomuschat: Israels Militär sieht sich mit einem echten Dilemma konfrontiert: Wenn Israel die Hamas, die den schlimmsten Massenmord an Juden seit dem Holocaust verübt hat, vollständig eliminieren will, muss es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Dürfen Israels Streitkräfte den Gazastreifen abriegeln und Hilfslieferungen über seine Grenzübergänge unterbinden?
+
+Tomuschat: Nach den Regeln des Völkerrechts dürfen die Kriegsparteien die Zivilbevölkerung nicht aushungern. Die Kriegsparteien dürfen keine Vorratslieferungen für Zivilisten abschneiden, um militärische Vorteile zu erzielen.
+
+STANDARD: Eine UN-Kommission hat schon kurz nach dem Beginn der Feindseligkeiten von starken Anhaltspunkten für Kriegsverbrechen gesprochen. Werden diese Taten jemals geahndet?
+
+Tomuschat: Ich gehe davon aus, dass Untersuchungen stattfinden werden. Die UN oder andere Institutionen, möglicherweise der Internationale Strafgerichtshof, können diese Ermittlungen durchführen. Ziel muss es sein, für mögliche Strafverfahren verlässliche Beweise zu sichern.
+
+STANDARD: Zum Abschluss eine grundsätzliche Frage: Was ist das Völkerrecht wert, wenn es nicht durchgesetzt wird?
+
+Tomuschat: In diesem Fall muss man leider schon große Zweifel an der Wirksamkeit des Völkerrechts haben.
+
+Task: Summarize this interview to make it short and comprehensive."
+
+
+===> Answer
+
+<|assistant>
+Christian Tomuschat, a renowned German international law scholar, stated in an interview with the STANDARD that Israel's 
+military is facing significant challenges in fighting against the radical Islamist group Hamas while adhering to international law. 
+While Israel has the right and obligation under Article 51 of the UN Charter to defend itself from terrorist attacks, Tomuschat 
+emphasized that Israel, as a state, cannot allow such barbaric attacks on its citizens to go unpunished. Under the Geneva Conventions 
+and their additional protocols, as well as the Hague Convention on Land Warfare, both parties in this conflict are required to abide 
+by the principles of humanity and proportionality. However, due to the density of population in the Gaza Strip and Hamas militants 
+hiding in civilian buildings, it is difficult for Israel's military to engage in a war based on international law. While Israel seeks to eliminate Hamas completely, this goal may result in civilian fatalities. Tomuschat stressed that both sides must strive to separate combatants from civilians, as not doing so risks undermining the principles of the Völkerrecht. The UN-appointed Commission has already identified possible war crimes in the ongoing conflict, and Tomuschat expects investigations into these crimes to be carried out by the UN or other institutions, with the goal of providing reliable evidence for any potential prosecutions
+
+
+==========================================================================================================================================================================
+
+cargo run  --release --features accelerate -- --which 7b-zephyr --sample-len 300 --prompt "
+<|system>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user>: Tell me what kind of pet Georg has?"
+
+
+===> Answer
+avx: false, neon: true, simd128: false, f16c: false
+temp: 0.80 repeat-penalty: 1.10 repeat-last-n: 64
+loaded 291 tensors (4.37GB) in 0.11s
+model built
+
+<|system>: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+<|user>: Tell me what kind of pet Georg has?
+
+<|assistant|>
+Georg has a pet named Millie, who is a dog.</s>
+
+  70 prompt tokens processed: 3.25 token/s
+ 299 tokens generated: 23.89 token/s
+
+==========================================================================================================================================================================
+
+cargo run  --release --features accelerate -- --which 7b-zephyr --sample-len 300 --temperature 1.0 --prompt "
+<|system|>: I give you facts and you should tell me which are right and which are wrong. 
+
+The facts I give you look as follows:
+1: Fact1
+2: Fact2
+3: Fact3
+
+Your answers should then look for example as follows: 
+1: true
+2: true
+3: false
+
+<|user|>: Tell me, which of the following facts are right and which are wrong:
+1: The earth is round. 
+2: The sun rotates around the earth 
+3: The earth rotates around the sun"
+
+===> Answer
+
+<|system>|: I give you facts and you should tell me which are right and which are wrong.
+
+The facts I give you look as follows:
+1: Fact1
+2: Fact2
+3: Fact3
+
+Your answers should then look for example as follows:
+1: true
+2: true
+3: false
+
+<|user|>: Tell me, which of the following facts are right and which are wrong:
+1: The earth is round.
+2: The sun rotates around the earth
+3: The earth rotates around the sun
+
+Answer:
+1: true
+2: false
+3: true.</s>
+
+==========================================================================================================================================================================
+
+
+==========================================================================================================================================================================
+
+
+cargo run  --release -- --which 7bGGUFG2K --sample-len 300 --prompt "
+
+
+PROMPT:
+
+Use the following passage to give a detailed answer to the question:
+
+
+QUESTION: Which animal does Georg have?
+
+
+PASSAGE: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+
+DETAILED ANSWER: 
+
+
+
+
+Rate the following three statements regarding their truth. Just tell me for each statement if it is true or false. 
+
+The answer can look as follows: 
+1: true
+2: true
+3: false
+
+Here are the statements:
+1: The earth is round. 
+2: The sun rotates around the earth 
+3: The earth rotates around the sun
+
+
+
+cargo run  --release -- --which 7bGGUFG2K --sample-len 300 --prompt "Here are some facts I give you: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece. Regarding the facts I gave you, tell me, which animal does Georg have?"
+
+cargo run  --release -- --which 7bGGUFG2K --sample-len 300 --prompt "
+
+Context:
+Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Question:
+What kind of pet does Georg have?"
+
+
+
+
+
+cargo run  --release -- --which 7bGGUFG2K --sample-len 300 --prompt "Here are some facts I give you: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece. Regarding the facts I gave you, tell me, which animal does Georg have?"
+
+cargo run  --release -- --which 7bGGUFG2K --sample-len 300 --prompt "
+
+Context:
+Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Task:
+Summarize the context"
+
+
+cargo run  --release -- --which GPT3 --sample-len 300 --prompt "
+
+Context:
+Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Task:
+Summarize the context"
+
+
+
+cargo run  --release -- --which BartLargeCnn --sample-len 300 --prompt "Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece."
+
+
+
+
+cargo run  --release -- --which 7bGGUFQ5KS --sample-len 300 --prompt "
+
+Context: Georg is an Austrian. He is about 60 years old. He has studied software engineering in Vienna. He has a dog whose name is Millie. She was born in Zakynthos, which is in Greece.
+
+Task: Summarize the context"
+
+
+cargo run  --release -- --which 7bGGUFQ5KS --sample-len 300 --prompt "
+
+Context: I will cook a goose. I bought her already. I need a good recipe to cook the goose.
+
+Task: Provide a recipe to cook the goose"
+
+
+cargo run  --release -- --which 7bGGUFQ5KS --sample-len 300 --prompt "
+
+Context: trimester of pregnancy was regulated differently, but the most critical line was drawn at roughly the end of the second trimester, which, at the time, corresponded to the point at which a fetus was thought to achieve �viability,� i.e., the ability to survive outside the womb. Although the Court acknowledged that States had a legitimate interest in protecting �potential life,�1 it found that this interest could not justify any restriction on previability abortions. The Court did not explain the basis for this line, and even abortion supporters have found it hard to defend Roe�s reasoning. One prominent constitutional scholar wrote that he �would vote for a statute very much like the one the Court end[ed] up drafting� if he were �a legislator,� but his assessment of Roe was memorable and brutal: Roe was �not constitutional law� at all and gave �almost no sense of an obligation to try to be.�2 At the time of Roe, 30 States still prohibited abortion at all stages. In the years prior to that decision, about a third of the States had liberalized their laws, but Roe abruptly ended that political process. It imposed the same highly restrictive regime on the entire Nation, and it effectively struck down the abortion laws of every single State.3 As ������ 1 Roe v. Wade, 410 U. S. 113, 163 (1973). 2 J. Ely, The Wages of Crying Wolf: A Comment on Roe v. Wade, 82 Yale L. J. 920, 926, 947 (1973) (Ely) (emphasis deleted). 3L. Tribe, Foreword: Toward a Model of Roles in the Due Process of Life and Law, 87 Harv. L. Rev. 1, 2 (1973) (Tribe). Cite as: 597 U. S. ____ (2022) 3 Opinion of the Court Justice Byron White aptly put it in his dissent, the decision represented the �exercise of raw judicial power,� 410 U. S., at 222, and it sparked a national controversy that has embittered our political culture for a half century.4  Eventually, in Planned Parenthood of Southeastern Pa. v. Casey, 505 U. S. 833 (1992), the Court revisited Roe, but the Members of the Court split three ways. Two Justices expressed no desire to change Roe in any way.5 Four others wanted to overrule the decision in its entirety.6 And the three remaining Justices, who jointly signed the controlling opinion, took a third position.7 Their opinion did not endorse Roe�s reasoning, and it even hinted that one or more of its authors might have �reservations� about whether the Constitution protects a right to abortion.8 But the opinion concluded that stare decisis, which calls for prior decisions to be followed in most instances, required adherence to what it called Roe�s �central holding��that a State may not constitutionally protect fetal life before �viability��even if that holding was wrong.9 Anything less, the opinion claimed, would undermine respect for this Court and the rule of law. Paradoxically, the judgment in Casey did a fair amount of overruling. Several important abortion decisions were ������ 4See R. Ginsburg, Speaking in a Judicial Voice, 67 N. Y. U. L. Rev. 1185, 1208 (1992) (�Roe . . . halted a political process that was moving in a reform direction and thereby, I believed, prolonged divisiveness and deferred stable settlement of the issue�). 5See 505 U. S., at 911 (Stevens, J., concurring in part and dissenting in part); id., at 922 (Blackmun, J., concurring in part, concurring in judgment in part, and dissenting in part). 6See id., at 944 (Rehnquist, C. J., concurring in judgment in part and dissenting in part); id., at 979 (Scalia, J., concurring in judgment in part and dissenting in part). 7See id., at 843 (joint opinion of O�Connor, Kennedy, and Souter, JJ.). 8 Id., at 853. 9 Id., at 860.    4 DOBBS v. JACKSON WOMEN�S HEALTH ORGANIZATION Opinion of the Court overruled in toto, and Roe itself was overruled in part.10 Casey threw out Roe�s trimester scheme and substituted a new rule of uncertain origin under which States were forbidden to adopt any regulation that imposed an �undue burden� on a woman�s right to have an abortion.11 The decision provided no clear.
+
+Task: Summarize the context"
+
+cargo run  --release -- --which 7bGGUFQ5KS --sample-len 300 --prompt "
+
+Context: trimester of pregnancy was regulated differently, but the most critical line was drawn at roughly the end of the second trimester, which, at the time, corresponded to the point at which a fetus was thought to achieve �viability,� i.e., the ability to survive outside the womb. Although the Court acknowledged that States had a legitimate interest in protecting �potential life,�1 it found that this interest could not justify any restriction on previability abortions. The Court did not explain the basis for this line, and even abortion supporters have found it hard to defend Roe�s reasoning. One prominent constitutional scholar wrote that he �would vote for a statute very much like the one the Court end[ed] up drafting� if he were �a legislator,� but his assessment of Roe was memorable and brutal: Roe was �not constitutional law� at all and gave �almost no sense of an obligation to try to be.�2 At the time of Roe, 30 States still prohibited abortion at all stages. In the years prior to that decision, about a third of the States had liberalized their laws, but Roe abruptly ended that political process. It imposed the same highly restrictive regime on the entire Nation, and it effectively struck down the abortion laws of every single State.3 As ������ 1 Roe v. Wade, 410 U. S. 113, 163 (1973). 2 J. Ely, The Wages of Crying Wolf: A Comment on Roe v. Wade, 82 Yale L. J. 920, 926, 947 (1973) (Ely) (emphasis deleted). 3L. Tribe, Foreword: Toward a Model of Roles in the Due Process of Life and Law, 87 Harv. L. Rev. 1, 2 (1973) (Tribe). Cite as: 597 U. S. ____ (2022) 3 Opinion of the Court Justice Byron White aptly put it in his dissent, the decision represented the �exercise of raw judicial power,� 410 U. S., at 222, and it sparked a national controversy that has embittered our political culture for a half century.4  Eventually, in Planned Parenthood of Southeastern Pa. v. Casey, 505 U. S. 833 (1992), the Court revisited Roe, but the Members of the Court split three ways. Two Justices expressed no desire to change Roe in any way.5 Four others wanted to overrule the decision in its entirety.6 And the three remaining Justices, who jointly signed the controlling opinion, took a third position.7 Their opinion did not endorse Roe�s reasoning, and it even hinted that one or more of its authors might have �reservations� about whether the Constitution protects a right to abortion.8 But the opinion concluded that stare decisis, which calls for prior decisions to be followed in most instances, required adherence to what it called Roe�s �central holding��that a State may not constitutionally protect fetal life before �viability��even if that holding was wrong.9 Anything less, the opinion claimed, would undermine respect for this Court and the rule of law. Paradoxically, the judgment in Casey did a fair amount of overruling. Several important abortion decisions were ������ 4See R. Ginsburg, Speaking in a Judicial Voice, 67 N. Y. U. L. Rev. 1185, 1208 (1992) (�Roe . . . halted a political process that was moving in a reform direction and thereby, I believed, prolonged divisiveness and deferred stable settlement of the issue�). 5See 505 U. S., at 911 (Stevens, J., concurring in part and dissenting in part); id., at 922 (Blackmun, J., concurring in part, concurring in judgment in part, and dissenting in part). 6See id., at 944 (Rehnquist, C. J., concurring in judgment in part and dissenting in part); id., at 979 (Scalia, J., concurring in judgment in part and dissenting in part). 7See id., at 843 (joint opinion of O�Connor, Kennedy, and Souter, JJ.). 8 Id., at 853. 9 Id., at 860.    4 DOBBS v. JACKSON WOMEN�S HEALTH ORGANIZATION Opinion of the Court overruled in toto, and Roe itself was overruled in part.10 Casey threw out Roe�s trimester scheme and substituted a new rule of uncertain origin under which States were forbidden to adopt any regulation that imposed an �undue burden� on a woman�s right to have an abortion.11 The decision provided no clear.
+
+Task: Summarize the context"
+
+
+cargo run  --release --  --tracing --verbose-prompt --which 7bGGUFQ5KS --sample-len 300 --prompt "
+
+This is an interview between a journalist (marked as 'Standard:') and another person marked as 'Tomuschat:'. Summarize theis interview to make it short and comprehensive.
+
+Für Israels Militär sei es äußerst schwierig, einen Krieg gegen die radikalislamische Hamas nach den Normen des Völkerrechts zu führen, sagt Christian Tomuschat, einer der profiliertesten Völkerrechtler Deutschlands, im STANDARD-Gespräch. Wenn Israel die Hamas tatsächlich vollständig eliminieren will, müsse es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Die Terrororganisation Hamas hat den aktuellen Nahost-Krieg durch ihren barbarischen Angriff auf Israel mit 1.400 Todesopfern entfesselt. Welche Möglichkeiten besaß Israel unmittelbar nach dem Hamas-Überfall, um im Rahmen des Selbstverteidigungsrechts zu reagieren?
+
+Tomuschat: Israel hatte nicht nur das Recht nach Artikel 51 der UN-Charta auf Selbstverteidigung gegen die Terrororganisation Hamas. Israel hat als Staat auch die Pflicht, seine Bevölkerung vor Terrorangriffen mit geeigneten Maßnahmen zu schützen. Zu diesen Maßnahmen gehört auch die Anwendung von Waffengewalt. Kein Staat darf sich derartig abscheuliche Terrorangriffe auf seine Menschen gefallen lassen.
+
+STANDARD: Macht es einen völkerrechtlichen Unterschied, dass Israel gegen eine Terrorgruppe kämpft und nicht gegen einen souveränen Staat?
+
+Tomuschat: Nein. Israel führt einen eindeutigen Selbstverteidigungskrieg gegen diese Terrororganisation. Die Hamas hat darüber hinaus als Beherrscher des Gazastreifens eine regierungsähnliche Form.
+
+STANDARD: Israels Militär versichert, dass es bei den Angriffen auf die Hamas im Einklang mit dem Völkerrecht handelt und die Vorgaben beachtet. Was sagen Sie?
+
+Tomuschat: Auch in dieser bewaffneten Auseinandersetzung gelten die Genfer Konventionen und ihre Zusatzprotokolle sowie die Haager Landkriegsordnung. Israel und die Hamas haben danach kein unbeschränktes Recht in der Wahl der Methoden und der Mittel ihrer Kriegführung. Zentral ist, dass die Zivilbevölkerung, einzelne Zivilpersonen und zivile Einrichtungen wie Krankenhäuser allgemeinen Schutz genießen, also nicht angegriffen werden dürfen.
+
+STANDARD: Israel bombardiert seit Wochen massiv den Gazastreifen und intensiviert nun seine Bodenoffensive. Tausende Zivilisten sind bei den Luftangriffen laut den UN bereits gestorben. Geht Israel damit zu weit?
+
+Tomuschat: Israel geht mit dem Bombardement sicherlich an Grenzen. Auch bei so einer Offensive, wie Israel sie derzeit gegen die Hamas führt, müssen die elementaren Regeln des Kriegsvölkerrechts eingehalten werden. Es gelten etwa die Prinzipien der Humanität und der Verhältnismäßigkeit. Israel steht unter der Kontrolle der Weltöffentlichkeit.
+
+STANDARD: Der Gazastreifen ist klein und mit 2,3 Millionen Menschen sehr dicht bevölkert. Hamas-Extremisten verstecken sich in Wohnhäusern und anderen zivilen Gebäuden. Die Terrorgruppe missbraucht Zivilisten als Schutzschilde und schert sich nicht um ihr Leid. Wie ist für Israel unter diesen Umständen eine bewaffnete Auseinandersetzung nach den Regeln des Kriegsvölkerrechts überhaupt möglich?
+
+Tomuschat: Für Israels Militär ist es äußerst schwierig, einen Krieg gegen diesen Gegner und unter diesen Umständen nach den Normen des Völkerrechts zu führen. Der Krieg kann noch in einen Häuserkampf, einen 'urban warfare', münden, dann dürfte es noch schlimmer werden. Eigentlich müssten die bewaffneten Kräfte in gehöriger Distanz zu der Bevölkerung stehen und operieren. Alle Anstrengungen der kriegsführenden Parteien müssten darauf ausgerichtet sein, Kombattanten und Zivilisten weiträumig zu trennen. Das lässt sich aber in der gegenwärtigen Situation kaum verwirklichen. Wir haben es nicht mit zwei Staaten zu tun, deren Armeen weitab der Wohnregionen gegeneinander antreten.
+
+STANDARD: Welche Folge hat das für Israels Militär?
+
+Tomuschat: Israels Militär sieht sich mit einem echten Dilemma konfrontiert: Wenn Israel die Hamas, die den schlimmsten Massenmord an Juden seit dem Holocaust verübt hat, vollständig eliminieren will, muss es fast zwangsläufig den Tod von Zivilisten in Kauf nehmen.
+
+STANDARD: Dürfen Israels Streitkräfte den Gazastreifen abriegeln und Hilfslieferungen über seine Grenzübergänge unterbinden?
+
+Tomuschat: Nach den Regeln des Völkerrechts dürfen die Kriegsparteien die Zivilbevölkerung nicht aushungern. Die Kriegsparteien dürfen keine Vorratslieferungen für Zivilisten abschneiden, um militärische Vorteile zu erzielen.
+
+STANDARD: Eine UN-Kommission hat schon kurz nach dem Beginn der Feindseligkeiten von starken Anhaltspunkten für Kriegsverbrechen gesprochen. Werden diese Taten jemals geahndet?
+
+Tomuschat: Ich gehe davon aus, dass Untersuchungen stattfinden werden. Die UN oder andere Institutionen, möglicherweise der Internationale Strafgerichtshof, können diese Ermittlungen durchführen. Ziel muss es sein, für mögliche Strafverfahren verlässliche Beweise zu sichern.
+
+STANDARD: Zum Abschluss eine grundsätzliche Frage: Was ist das Völkerrecht wert, wenn es nicht durchgesetzt wird?
+
+Tomuschat: In diesem Fall muss man leider schon große Zweifel an der Wirksamkeit des Völkerrechts haben."
+
+
+
+
+
+
+
+
+
