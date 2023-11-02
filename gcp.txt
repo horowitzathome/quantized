@@ -1,0 +1,3 @@
+VM e2-micro
+Very slow compiling Rust.
+
